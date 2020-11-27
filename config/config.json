@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "app_uactoken",
+    "password": "uactoken@2020",
+    "database": "db_uactoken_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "app_uactoken",
+    "password": "uactoken@2020",
+    "database": "db_uactoken_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "app_uactoken",
+    "password": "uactoken@2020",
+    "database": "db_uactoken_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

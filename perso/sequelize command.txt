@@ -1,0 +1,23 @@
+
+npx sequelize-cli model:generate --name Entity --attributes code:string,name:string
+
+npx sequelize-cli model:generate --name Student --attributes matricule:string
+
+npx sequelize-cli model:generate --name WalletState --attributes name:string,description:text
+
+npx sequelize-cli model:generate --name AccountState --attributes name:string,description:text
+
+npx sequelize-cli model:generate --name Wallet --attributes name:string
+
+npx sequelize-cli model:generate --name Account --attributes address:string,encryptedPrivateKey:text
+
+npx sequelize-cli model:generate --name TransferState --attributes name:string,description:text
+
+npx sequelize-cli model:generate --name Transfer --attributes amount:decimal
+
+npx sequelize-cli model:generate --name Log --attributes name:string,details:text,author:string
+
+npx sequelize-cli model:generate --name TokenConfirmation --attributes token:text,used:boolean,expireAt:date,callbackUrl:string
+
+
+
