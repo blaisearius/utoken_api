@@ -1,10 +1,11 @@
 //Imports 
 var jwtUtils = require('./../utils/jwt.utils');
+var constants = require('./../utils/constants');
 var models = require('./../models');
 var Web3 = require('web3');
 
 //variables 
-var web3 = new Web3(); 
+var web3 = new Web3(new Web3.providers.HttpProvider(constants.ethereumProviderURL)); 
 
 //function controller
 module.exports = {
