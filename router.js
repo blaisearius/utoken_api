@@ -23,7 +23,8 @@ exports.router = (function() {
     apiRouter.route('/transaction/check_balance').post(TransactionController.checkBalance);
 
     apiRouter.route('/transaction/send_eth_from_private').post(EthTransactionController.sendEtherTransactionFromPrivate);
-
+    apiRouter.route('/transaction/check_eth_balance').post(EthTransactionController.checkEthBalance);
+    
     return apiRouter;
     
 })();

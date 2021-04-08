@@ -10,6 +10,33 @@ var web3 = new Web3(new Web3.providers.HttpProvider(constants.ethereumProviderUR
 
 //function controller
 module.exports = {
+    checkEthBalance: function(req, res){
+        
+        var headerAuth = req.headers['authorization'];
+        var userId = jwtUtils.getUserId(headerAuth);
+        
+        if(userId < -1){
+            return res.status(400).json({'error': 'Wrong token'});
+        }
+        var address = req.body.address;
+
+        if(address ==null || address ==""){ return res.status(400).json({'error': 'missing address'});}
+        
+        web3.eth.getBalance(address, (err, bal)=>{
+            return res.status(200).json({
+                'data': {
+                    'address': address,
+                    'token': "ETH",
+                    'balance': web3.utils.fromWei(bal, 'ether')
+                }
+            });
+        })
+        .catch(function(err){
+            return res.status(404).json({
+                'error': 'can not found balance !'
+            });
+        });
+    }, 
 
     sendEtherTransactionFromPrivate: function(req, res){
         var headerAuth = req.headers['authorization'];
@@ -36,8 +63,8 @@ module.exports = {
             // create transaction object 
             var txObject = {
                 nonce: web3.utils.toHex(txCount),
-                gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')),
-                gasLimit: web3.utils.toHex(80000),
+                gasPrice: web3.utils.toHex(web3.utils.toWei(constants.gasPrice, 'gwei')),
+                gasLimit: web3.utils.toHex(constants.gasLimit),
                 to: toAddress,
                 value : web3.utils.toHex(web3.utils.toWei(amount, 'ether'))
             };

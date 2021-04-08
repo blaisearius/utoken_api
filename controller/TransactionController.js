@@ -15,8 +15,6 @@ const contract = new web3.eth.Contract(contractABI, contractAddress);
 module.exports = {
 
     checkBalance: function(req, res){
-        console.log(constants.FOO);
-
         var headerAuth = req.headers['authorization'];
         var userId = jwtUtils.getUserId(headerAuth);
         
@@ -31,6 +29,7 @@ module.exports = {
             return res.status(200).json({
                 'data': {
                     'address': address,
+                    'token': "UToken",
                     'balance': bal
                 }
             });
@@ -77,8 +76,8 @@ module.exports = {
                     // create transaction object 
                     var txObject = {
                         nonce: web3.utils.toHex(txCount),
-                        gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')),
-                        gasLimit: web3.utils.toHex(80000),
+                        gasPrice: web3.utils.toHex(web3.utils.toWei(constants.gasPrice, 'gwei')),
+                        gasLimit: web3.utils.toHex(constants.gasLimit),
                         to: contractAddress,
                         data: contract.methods.transfer(toAddress, amount).encodeABI()
                     };
@@ -162,8 +161,8 @@ module.exports = {
             // create transaction object 
             var txObject = {
                 nonce: web3.utils.toHex(txCount),
-                gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')),
-                gasLimit: web3.utils.toHex(80000),
+                gasPrice: web3.utils.toHex(web3.utils.toWei(constants.gasPrice, 'gwei')),
+                gasLimit: web3.utils.toHex(constants.gasLimit),
                 to: contractAddress,
                 data: contract.methods.transfer(toAddress, amount).encodeABI(),
             };

@@ -52,9 +52,10 @@ module.exports = {
                     });
 
                     return res.status(201).json({
-                        'default_account_address': wallet[0].address
+                        'address': wallet[0].address,
+                        'private': wallet[0].privateKey
                     });
-            
+        
                 });
             }
         })
